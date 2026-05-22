@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  /* Mendaftarkan variabel warna custom ke Tailwind v4 */
+  --color-vite-text: #6b6375;
+  --color-vite-h: #08060d;
+  --color-vite-bg: #fff;
+  --color-vite-accent: #aa3bff;
+}
+
+/* Base style murni tanpa mengunci warna teks secara kaku */
+:root {
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--color-vite-bg);
+  color: var(--color-vite-text);
+}
+
+#root {
+  max-width: 1126px;
+  margin: 0 auto;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
