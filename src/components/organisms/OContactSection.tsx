@@ -9,6 +9,9 @@ interface HistoryItem {
   text: string;
 }
 
+// Gunakan Record dengan key spesifik atau as const
+type CmdKeys = "help" | "email" | "github" | "linkedin" | "twitter" | "whoami" | "ls" | "hire" | "clear";
+
 export const OContactSection: React.FC = () => {
   const t = useTheme();
   const [history, setHistory] = useState<HistoryItem[]>([{ type: "sys", text: 'CONTACT.EXE — Type "help" for commands.' }]);
@@ -16,7 +19,7 @@ export const OContactSection: React.FC = () => {
   const [focus, setFocus] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  const CMDS: Record<string, () => string[] | null> = {
+  const CMDS: Record<CmdKeys, () => string[] | null> = {
     help: () => ["Available commands:", "  email    — View email", "  github   — GitHub profile", "  linkedin — LinkedIn", "  twitter  — Twitter", "  hire     — Send hire request", "  whoami   — About me", "  ls       — List contacts", "  clear    — Clear terminal"],
     email: () => ["📧  hello@retro-dev.io"],
     github: () => ["🔗  github.com/retro-developer"],
@@ -31,24 +34,36 @@ export const OContactSection: React.FC = () => {
   const handleCmd = useCallback(() => {
     const cmd = input.trim().toLowerCase();
     if (!cmd) return;
-    if (cmd === "clear") {
-      setHistory([{ type: "sys", text: "Terminal cleared." }]);
-      setInput("");
-      return;
-    }
-    const newH: HistoryItem[] = [...history, { type: "in", text: cmd }];
-    const fn = CMDS[cmd];
-    const out = fn ? fn() : [`'${cmd}' is not recognized. Type "help".`];
-    
-    if (out === null) {
-      setHistory([{ type: "sys", text: "Terminal cleared." }]);
-    } else {
-      setHistory([...newH, ...out.map(x => ({ type: fn ? "out" as const : "err" as const, text: x }))]);
-    }
+
+    // Bersihkan input langsung
     setInput("");
+
+    // Cek secara aman apakah input benar-benar ada di objek CMDS
+    // (Mencegah bug bawaan JS jika user mengetik "toString" / "constructor")
+    const isValidCmd = Object.prototype.hasOwnProperty.call(CMDS, cmd);
+    
+    if (isValidCmd) {
+      const fn = CMDS[cmd as CmdKeys];
+      const out = fn();
+
+      if (out === null) {
+        // Logika untuk perintah 'clear'
+        setHistory([{ type: "sys", text: "Terminal cleared." }]);
+      } else {
+        // Logika untuk perintah yang valid
+        const newH: HistoryItem[] = [...history, { type: "in", text: cmd }];
+        setHistory([...newH, ...out.map(x => ({ type: "out" as const, text: x }))]);
+      }
+    } else {
+      // Logika jika command tidak dikenali
+      const newH: HistoryItem[] = [...history, { type: "in", text: cmd }];
+      setHistory([...newH, { type: "err", text: `'${cmd}' is not recognized. Type "help".` }]);
+    }
   }, [input, history]);
 
-  useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: "smooth" }); }, [history]);
+  useEffect(() => { 
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" }); 
+  }, [history]);
 
   return (
     <section className="py-16 px-8">
@@ -95,7 +110,7 @@ export const OContactSection: React.FC = () => {
         <div className="flex flex-col gap-4">
           {[
             { icon: "📧", label: "EMAIL", value: "hello@retro-dev.io", color: t.primary },
-            { icon: "🐙", label: "GITHUB", value: "github.com/retro-developer", color: `${t.white}cc` },
+            { icon: "🐙", label: "GITHUB", value: "github.com/retro-developer", color: `${t.white}cc` }, // Asumsi t.white format hex
             { icon: "💼", label: "LINKEDIN", value: "linkedin.com/in/retro-dev", color: t.secondary },
             { icon: "🐦", label: "TWITTER", value: "@retro_dev", color: t.accent },
           ].map(c => (
@@ -111,6 +126,7 @@ export const OContactSection: React.FC = () => {
               </div>
             </div>
           ))}
+          {/* Perhatikan class 'Richmond' di bawah ini, pastikan sudah ter-define di globals.css / font config */}
           <div className="border border-[var(--color-dim)]/25 p-4 text-[var(--color-gray)]/50 text-[0.82rem] Richmond leading-relaxed">
             <div className="text-[var(--color-primary)]/65 mb-2">// AVAILABILITY</div>
             <div>Response time: &lt; 24 hours</div>

@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import { ThemeProperties } from "../types/theme";
+import type { ThemeProperties } from "../types/theme";
 
 export const THEMES: Record<string, ThemeProperties> = {
   ROSE: {
