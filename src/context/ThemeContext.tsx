@@ -52,7 +52,10 @@ export const ThemeProvider: React.FC<{ themeId: string; children: React.ReactNod
 
   return (
     <ThemeCtx.Provider value={currentTheme}>
-      <div style={inlineVars} className="min-h-screen text-[var(--color-white)] select-none font-mono">
+      <div 
+        style={inlineVars} 
+        className="bg-[var(--color-bg)] text-[var(--color-white)] min-h-screen select-none font-mono transition-colors duration-500 ease-in-out"
+      >
         {children}
       </div>
     </ThemeCtx.Provider>

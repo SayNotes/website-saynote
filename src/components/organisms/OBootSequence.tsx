@@ -13,14 +13,15 @@ export const OBootSequence: React.FC<OBootSequenceProps> = ({ onDone, themeId })
   const [progress, setProgress] = useState(0);
   const [showProg, setShowProg] = useState(false);
 
+  // Tambahkan warna spesifik untuk beberapa teks, sisanya akan pakai fallback
   const BOOT = [
-    { text: "SOFT-BIOS v1.0 — Portfolio OS", delay: 0 },
+    { text: "SOFT-BIOS v1.0 — SAYNOTE", delay: 0 },
     { text: `Loading color palette: ${t.label} ✦`, delay: 400, color: t.primary },
     { text: "Memory check: ················ OK", delay: 750 },
     { text: "Loading PORTFOLIO.SYS ········ OK", delay: 1100 },
     { text: "Mounting /dev/creativity ····· OK", delay: 1400 },
     { text: "", delay: 1700 },
-    { text: `✦ Welcome — ${t.desc}`, delay: 1800, color: t.primary },
+    { text: `✦ Welcome — ${t.desc}`, delay: 1800, color: t.accent },
     { text: "", delay: 1900 },
   ];
 
@@ -51,7 +52,7 @@ export const OBootSequence: React.FC<OBootSequenceProps> = ({ onDone, themeId })
       clearTimeout(t1);
       clearTimeout(t2);
     };
-  }, [themeId]);
+  }, [themeId, t, onDone]);
 
   return (
     <div style={{ background: t.bg }} className="min-h-screen flex items-center justify-center animate-flicker">
@@ -60,19 +61,41 @@ export const OBootSequence: React.FC<OBootSequenceProps> = ({ onDone, themeId })
         {lines.map((ln, i) => (
           <div 
             key={i} 
-            style={{ color: ln.color, textShadow: ln.color ? `0 0 8px ${ln.color}55` : undefined }} 
-            className={`animate-boot-slide text-[1.05rem] mb-1 ${!ln.color ? "text-[var(--color-dim)]/80" : ""}`}
+            style={{ 
+              // Jika tidak ada color dari array, gunakan warna dim dari JS
+              color: ln.color || `${t.dim}cc`, 
+              // Berikan shadow sesuai warnanya agar terlihat menyala
+              textShadow: ln.color ? `0 0 8px ${ln.color}55` : `0 0 8px ${t.dim}55` 
+            }} 
+            className="animate-boot-slide text-[1.05rem] mb-1 font-mono"
           >
             {ln.text}
           </div>
         ))}
+        
         {showProg && (
           <div className="mt-6">
-            <div className="text-[var(--color-white)]/50 text-[0.95rem] mb-1.5">Loading ···</div>
-            <div className="h-[3px] bg-[var(--color-dim)]/25 rounded-sm">
+            {/* Teks Loading */}
+            <div 
+              style={{ color: `${t.white}88` }} 
+              className="text-[0.95rem] mb-1.5 font-mono"
+            >
+              Loading ···
+            </div>
+            
+            {/* Track Progress Bar */}
+            <div 
+              style={{ backgroundColor: `${t.dim}44` }} 
+              className="h-[3px] rounded-sm overflow-hidden"
+            >
+              {/* Fill Progress Bar */}
               <div 
-                style={{ width: `${progress}%` }} 
-                className="h-full bg-[var(--color-primary)] shadow-[0_0_10px_var(--color-primary)] transition-[width] duration-40 linear rounded-sm"
+                style={{ 
+                  width: `${progress}%`,
+                  backgroundColor: t.primary,
+                  boxShadow: `0 0 10px ${t.primary}88`
+                }} 
+                className="h-full transition-[width] duration-75 linear rounded-sm"
               />
             </div>
           </div>

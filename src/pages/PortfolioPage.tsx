@@ -32,7 +32,7 @@ export default function PortfolioPage() {
 
   return (
     <ThemeProvider themeId={themeId}>
-      <div key={themeId} className="animate-theme-in bg-black">
+      <div key={themeId} className="animate-theme-in">
         <TPageLayout
           activeSection={section}
           onNav={s => { setSection(s); window.scrollTo({ top: 0, behavior: "smooth" }); }}
