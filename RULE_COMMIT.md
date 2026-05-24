@@ -42,6 +42,7 @@ Digunakan sesuai kebutuhan tim atau komunitas:
 
 ---
 
-## 📌 Format Pesan Commit
-Gunakan format berikut:
+## 📌 Rename commit
+git commit --amend -m "tipe(cakupan): pesan commit yang benar"
+
 
