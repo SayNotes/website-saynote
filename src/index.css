@@ -1,25 +1,34 @@
+/* Pastikan cara import sudah menggunakan v4 syntax */
 @import "tailwindcss";
 
 @theme {
-  /* Mendaftarkan variabel warna custom ke Tailwind v4 */
-  --color-vite-text: #6b6375;
-  --color-vite-h: #08060d;
-  --color-vite-bg: #fff;
-  --color-vite-accent: #aa3bff;
+  /* Mendaftarkan font kustom ke sistem token Tailwind v4 */
+  --font-retro: "VT323", "Courier New", monospace;
+  
+  /* Mendaftarkan utilitas animasi kustom (menghasilkan class seperti `animate-flicker`) */
+  --animate-flicker: flicker 9s infinite;
+  --animate-boot-slide: bootSlide .18s ease-out forwards;
+  --animate-scanline: scanline-move 6s linear infinite;
+  --animate-cursor-blink: cursor-blink 1.06s step-end infinite;
+  --animate-glow-soft: glow-soft 2.5s ease-in-out infinite;
+  --animate-theme-in: theme-in 0.25s ease-out;
+  --animate-folder-open: folder-open 0.15s ease-out;
+
+  /* Menuliskan keyframes langsung di dalam blok @theme */
+  @keyframes flicker { 0%,100%{opacity:1} 92%{opacity:.97} 93%{opacity:.9} 94%{opacity:.97} }
+  @keyframes bootSlide { from{opacity:0;transform:translateX(-10px)} to{opacity:1;transform:translateX(0)} }
+  @keyframes scanline-move { 0%{top:-10%} 100%{top:110%} }
+  @keyframes cursor-blink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+  @keyframes glow-soft { 0%,100%{opacity:.85} 50%{opacity:1} }
+  @keyframes theme-in { from{opacity:0;transform:scale(.98)} to{opacity:1;transform:scale(1)} }
+  @keyframes folder-open { from{opacity:0;transform:translateY(-4px)} to{opacity:1;transform:translateY(0)} }
 }
 
-/* Base style murni tanpa mengunci warna teks secara kaku */
-:root {
-  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
-  background-color: var(--color-vite-bg);
-  color: var(--color-vite-text);
-}
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap');
 
-#root {
-  max-width: 1126px;
-  margin: 0 auto;
-  text-align: center;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  body {
+    font-family: var(--font-retro);
+    overflow-x: hidden;
+  }
 }
