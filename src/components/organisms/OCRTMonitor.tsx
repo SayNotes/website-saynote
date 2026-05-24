@@ -15,7 +15,9 @@ export const OCRTMonitor: React.FC<OCRTMonitorProps> = ({ children }) => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center select-none w-full">
+    // PERUBAHAN DI SINI: Tambahkan "hidden md:flex" dan hapus "flex" bawaan
+    <div className="hidden md:flex flex-col items-center select-none w-full">
+      
       {/* OUTER CASING */}
       <div className="w-full max-w-[780px] bg-gradient-to-br from-[#d6cfc2] via-[#c4baa8] to-[#b0a590] rounded-t-[18px] rounded-b-[10px] pt-[22px] px-[26px] pb-[16px] shadow-[0_20px_60px_rgba(0,0,0,0.7),0_6px_18px_rgba(0,0,0,0.5),inset_0_3px_6px_rgba(255,255,255,0.35),inset_0_-3px_6px_rgba(0,0,0,0.25)] relative">
         <div className="absolute top-2 left-[30px] right-[30px] h-[1px] bg-white/20 rounded-sm" />

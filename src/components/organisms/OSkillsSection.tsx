@@ -77,12 +77,15 @@ export const OSkillsSection: React.FC = () => {
         <span>Name</span>
         <span className="pr-1.5">Category</span>
       </div>
+      
       {/* Folder tree */}
-      <div className="p-1.5 max-h-[360px] overflow-y-auto">
-        {FOLDERS.map((folder, i) => (
+      {/* PERUBAHAN DI SINI: max-h-[360px] diubah menjadi h-[360px] */}
+      <div className="p-1.5 h-[360px] overflow-y-auto">
+        {FOLDERS.map((folder) => (
           <MFolderGroup key={folder.name} folder={folder} color={folder.color} />
         ))}
       </div>
+      
       {/* Status bar */}
       <div className="border-t border-[var(--color-dim)]/20 px-3 py-1 text-[0.72rem] text-[var(--color-gray)]/35 flex justify-between">
         <span>{FOLDERS.reduce((a, f) => a + f.files.length, 0)} objects</span>
