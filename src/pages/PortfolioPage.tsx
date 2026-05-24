@@ -11,7 +11,7 @@ import { TPageLayout } from "../components/templates/TPageLayout";
 export default function PortfolioPage() {
   const [booted, setBooted] = useState(false);
   const [section, setSection] = useState("HOME");
-  const [themeId, setThemeId] = useState("ROSE");
+  const [themeId, setThemeId] = useState("MINT");
 
   const handleThemeChange = (id: string) => {
     setThemeId(id);

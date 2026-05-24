@@ -28,11 +28,11 @@ export const THEMES: Record<string, ThemeProperties> = {
   },
 };
 
-const ThemeCtx = createContext<ThemeProperties>(THEMES.ROSE);
+const ThemeCtx = createContext<ThemeProperties>(THEMES.MINT);
 export const useTheme = () => useContext(ThemeCtx);
 
 export const ThemeProvider: React.FC<{ themeId: string; children: React.ReactNode }> = ({ themeId, children }) => {
-  const currentTheme = THEMES[themeId] || THEMES.ROSE;
+  const currentTheme = THEMES[themeId] || THEMES.MINT;
 
   // Menyuntikkan CSS Variables ke element style pembungkus dinamis
   const inlineVars = {
