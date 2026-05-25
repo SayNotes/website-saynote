@@ -4,73 +4,92 @@ import { ADivider } from "../atoms/ADivider";
 import { MProjectCard } from "../molecules/MProjectCard";
 
 // Import Heroicons v2 resmi
-import { 
-  CommandLineIcon, 
-  DocumentTextIcon, 
-  BriefcaseIcon, 
+import {
+  CommandLineIcon,
+  DocumentTextIcon,
   CodeBracketIcon,
-  TrophyIcon,
-  SparklesIcon,
   PhotoIcon,
   XMarkIcon,
   ChevronDownIcon,
-  ChevronUpIcon
+  ChevronUpIcon,
 } from "@heroicons/react/24/outline";
 
 export const OProjectsSection: React.FC = () => {
   const [viewMode, setViewMode] = useState<"PROJECTS" | "EXPERIENCE">("PROJECTS");
   const [selectedCert, setSelectedCert] = useState<string | null>(null);
-  
+
   // State untuk melacak log mana saja yang terbuka
   const [expandedLogs, setExpandedLogs] = useState<Record<number, boolean>>({});
 
   const toggleLog = (idx: number) => {
-    setExpandedLogs(prev => ({ ...prev, [idx]: !prev[idx] }));
+    setExpandedLogs((prev) => ({ ...prev, [idx]: !prev[idx] }));
   };
 
   const PROJECTS = [
-    { title: "NEXUS-PLATFORM", desc: "Enterprise SaaS for team collaboration — real-time editing, WebSocket presence, multi-tenant auth, and auto-scaling infra.", tech: ["Next.js", "TypeScript", "PostgreSQL", "Redis", "AWS"], year: "2024", status: "LIVE" },
-    { title: "ALGO-TRADER", desc: "ML-powered automated trading system with backtesting engine, risk management, and live market data integration via WebSocket.", tech: ["Python", "FastAPI", "TensorFlow", "ClickHouse"], year: "2024", status: "LIVE" },
-    { title: "QUANTUM-CMS", desc: "Headless CMS with visual drag-and-drop page builder, GraphQL API, media CDN, and i18n support out of the box.", tech: ["React", "GraphQL", "Node.js", "MongoDB"], year: "2023", status: "BETA" },
-    { title: "VOID-ANALYTICS", desc: "Privacy-first analytics platform — cookie-less tracking, GDPR compliant, funnel analysis, and real-time dashboards.", tech: ["Vue.js", "Go", "ClickHouse", "K8s"], year: "2023", status: "LIVE" },
+    {
+      title: "NEXUS-PLATFORM",
+      desc: "Enterprise SaaS for team collaboration — real-time editing, WebSocket presence, multi-tenant auth, and auto-scaling infra.",
+      tech: ["Next.js", "TypeScript", "PostgreSQL", "Redis", "AWS"],
+      year: "2024",
+      status: "LIVE",
+    },
+    {
+      title: "ALGO-TRADER",
+      desc: "ML-powered automated trading system with backtesting engine, risk management, and live market data integration via WebSocket.",
+      tech: ["Python", "FastAPI", "TensorFlow", "ClickHouse"],
+      year: "2024",
+      status: "LIVE",
+    },
+    {
+      title: "QUANTUM-CMS",
+      desc: "Headless CMS with visual drag-and-drop page builder, GraphQL API, media CDN, and i18n support out of the box.",
+      tech: ["React", "GraphQL", "Node.js", "MongoDB"],
+      year: "2023",
+      status: "BETA",
+    },
+    {
+      title: "VOID-ANALYTICS",
+      desc: "Privacy-first analytics platform — cookie-less tracking, GDPR compliant, funnel analysis, and real-time dashboards.",
+      tech: ["Vue.js", "Go", "ClickHouse", "K8s"],
+      year: "2023",
+      status: "LIVE",
+    },
   ];
 
   const EXPERIENCES = [
-    { 
-      period: "2024 - 2026", 
-      role: "Senior Backend Engineer", 
-      company: "Cyber Systems Corp", 
-      summary: "Architected real-time data streaming pipeline handling millions of events daily. Mentored 4 junior developers and optimized database querying by 40%.",
-      type: "work"
-    },
-    { 
-      period: "2023", 
-      role: "Competitive Chess Player (Podium Finish)", 
-      company: "Campus Annual Chess Championship", 
-      summary: "Applied game theory, complex pattern recognition, and tactical execution under intense Blitz/Rapid time controls. Secured top ranking placement.",
+    {
+      period: "2025",
+      role: "Competitive Chess Player (Podium Finish)",
+      company: "Campus Annual Chess Championship",
+      summary:
+        "Applied game theory, advanced pattern recognition, and tactical execution under Blitz/Rapid time controls. Achieved podium placement with top ranking.",
       type: "chess",
-      certImg: "/src/assets/images/chess-cert.png"
+      certImg: "/src/assets/images/chess-cert.png",
     },
-    { 
-      period: "2022 - 2024", 
-      role: "Fullstack Developer", 
-      company: "Delta Tech Labs", 
-      summary: "Built and maintained 5 core responsive web applications using React and Node.js. Integrated secure payment gateways and OAuth third-party services.",
-      type: "work"
+    {
+      period: "2025",
+      role: "National Committee – FOSTIFEST",
+      company: "Delta Tech Labs",
+      summary:
+        "Coordinated national-level competition operations, ensuring smooth execution of schedules, participant management, and technical workflows.",
+      type: "work",
     },
-    { 
-      period: "2021 - 2023", 
-      role: "High-Tier Account Pilot & Grinder", 
-      company: "Independent Gaming Service", 
-      summary: "Optimized macro-strategy execution, account progression efficiency, and competitive MMR climbing for high-profile clients. Maintained 100% security and 95%+ win-rate benchmarks under tight deadlines.",
-      type: "gaming"
+    {
+      period: "2019 – 2024",
+      role: "Game Progression Specialist",
+      company: "Independent Gaming Service",
+      summary:
+        "Served 300+ clients with consistent positive testimonials. Assisted players across RPG, FPS, and puzzle genres by mastering game mechanics and delivering effective solutions to achieve milestones efficiently.",
+      type: "gaming",
+      certImg: "/src/assets/images/gaming-cert.png",
     },
-    { 
-      period: "2020 - 2022", 
-      role: "Junior Software Engineer", 
-      company: "Apex Software Inc", 
-      summary: "Developed UI components using Tailwind CSS and assisted in writing automated unit tests. Collaborated closely with UI/UX designers via Agile sprint methods.",
-      type: "work"
+    {
+      period: "2018 – Present",
+      role: "ReactJS Software Engineer",
+      company: "Apex Software Inc",
+      summary:
+        "Built UI components with Tailwind CSS and contributed to automated unit testing. Collaborated with UI/UX designers in Agile sprints to deliver polished user experiences.",
+      type: "work",
     },
   ];
 
@@ -118,32 +137,36 @@ export const OProjectsSection: React.FC = () => {
       `}</style>
 
       <section className="py-16 px-8">
-        <MTermLine 
-          prompt="C:\>" 
-          command={viewMode === "PROJECTS" ? "run projects.exe --all" : "cat history.log --verbose"} 
+        <MTermLine
+          prompt="C:\>"
+          command={
+            viewMode === "PROJECTS"
+              ? "run projects.exe --all"
+              : "cat history.log --verbose"
+          }
         />
         <ADivider />
 
-        {/* Tab Switcher */}
+        {/* Tab Switcher - Aksen primary hanya pada yang aktif */}
         <div className="mt-8 mb-8 flex border-b border-[var(--color-dim)]/20 text-xs sm:text-sm">
           <button
             onClick={() => setViewMode("PROJECTS")}
             className={`px-5 py-3 border-t-2 border-x transition-all cursor-pointer tracking-widest font-bold flex items-center gap-2 relative top-[1px] ${
               viewMode === "PROJECTS"
                 ? "border-t-[var(--color-primary)] border-x-[var(--color-dim)]/20 bg-[var(--color-bg)] text-[var(--color-primary)] z-10"
-                : "border-t-transparent border-x-transparent text-[var(--color-gray)]/30 hover:text-[var(--color-gray)]/70 bg-transparent"
+                : "border-t-transparent border-x-transparent text-[var(--color-gray)]/30 hover:text-[var(--color-primary)]/50 bg-transparent"
             }`}
           >
             <CommandLineIcon className="w-4 h-4 shrink-0" />
             <span>PROJECTS.EXE</span>
           </button>
-          
+
           <button
             onClick={() => setViewMode("EXPERIENCE")}
             className={`px-5 py-3 border-t-2 border-x transition-all cursor-pointer tracking-widest font-bold flex items-center gap-2 relative top-[1px] ${
               viewMode === "EXPERIENCE"
                 ? "border-t-[var(--color-primary)] border-x-[var(--color-dim)]/20 bg-[var(--color-bg)] text-[var(--color-primary)] z-10"
-                : "border-t-transparent border-x-transparent text-[var(--color-gray)]/30 hover:text-[var(--color-gray)]/70 bg-transparent"
+                : "border-t-transparent border-x-transparent text-[var(--color-gray)]/30 hover:text-[var(--color-primary)]/50 bg-transparent"
             }`}
           >
             <DocumentTextIcon className="w-4 h-4 shrink-0" />
@@ -156,13 +179,20 @@ export const OProjectsSection: React.FC = () => {
           {viewMode === "PROJECTS" ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fadeIn">
               {PROJECTS.map((p, idx) => (
-                <div key={p.title} className="relative flex flex-col group p-4 border border-dashed border-[var(--color-dim)]/10 hover:border-[var(--color-primary)]/30 rounded transition-all bg-[var(--color-dim)]/[0.01] hover:bg-[var(--color-dim)]/[0.03]">
+                <div
+                  key={p.title}
+                  className="relative flex flex-col group p-4 border border-dashed border-[var(--color-dim)]/10 hover:border-[var(--color-primary)]/30 rounded transition-all bg-[var(--color-dim)]/[0.01] hover:bg-[var(--color-dim)]/[0.03]"
+                >
                   <div className="text-[0.65rem] text-[var(--color-gray)]/30 mb-2 tracking-widest group-hover:text-[var(--color-primary)]/50 transition-colors flex items-center justify-between">
                     <div className="flex items-center gap-1.5">
                       <CodeBracketIcon className="w-3.5 h-3.5 opacity-40" />
-                      <span>SRC_FILE_NO_{String(idx + 1).padStart(2, "0")}</span>
+                      <span>
+                        SRC_FILE_NO_{String(idx + 1).padStart(2, "0")}
+                      </span>
                     </div>
-                    <span className="text-[var(--color-gray)]/20">[{p.year}]</span>
+                    <span className="text-[var(--color-gray)]/20">
+                      [{p.year}]
+                    </span>
                   </div>
                   <MProjectCard {...p} />
                 </div>
@@ -173,31 +203,31 @@ export const OProjectsSection: React.FC = () => {
             <div className="space-y-3 max-w-4xl font-mono animate-fadeIn">
               {EXPERIENCES.map((exp, idx) => {
                 const isExpanded = !!expandedLogs[idx];
-                const isChess = exp.type === 'chess';
-                const isGaming = exp.type === 'gaming';
                 
-                const textColor = isChess ? 'text-yellow-500' : isGaming ? 'text-cyan-500' : 'text-[var(--color-primary)]';
-                const borderDim = isChess ? 'border-yellow-500/20' : isGaming ? 'border-cyan-500/20' : 'border-[var(--color-primary)]/20';
-                const bgHover = isChess ? 'hover:bg-yellow-500/[0.02]' : isGaming ? 'hover:bg-cyan-500/[0.02]' : 'hover:bg-[var(--color-primary)]/[0.02]';
+                // Menggunakan warna dim untuk border dasar, primary untuk hover/aksen
+                const borderClass = "border-[var(--color-dim)]/20 hover:border-[var(--color-primary)]/30";
+                const textActive = "text-[var(--color-primary)]";
+                const bgActive = "bg-[var(--color-primary)]/5";
 
                 return (
-                  <div 
-                    key={idx} 
-                    className={`relative overflow-hidden border ${borderDim} bg-black/20 ${bgHover} rounded-sm transition-all duration-200`}
+                  <div
+                    key={idx}
+                    className={`relative overflow-hidden border ${borderClass} bg-black/20 rounded-sm transition-all duration-200`}
                   >
-                    {/* Header Row - Lebih Berjarak & Terbaca */}
+                    {/* Header Row */}
                     <div className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                      
                       {/* Informasi Kiri */}
                       <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                        {/* Status/Periode */}
-                        <span className={`text-xs font-bold tracking-wider px-2.5 py-1 bg-black/40 border ${borderDim} ${textColor} w-fit rounded-sm shadow-[inset_0_0_10px_rgba(0,0,0,0.5)]`}>
+                        {/* Status/Periode - Pakai primary redup */}
+                        <span
+                          className={`text-xs font-bold tracking-wider px-2.5 py-1 bg-[var(--color-bg)]/40 border border-[var(--color-dim)]/30 ${textActive} w-fit rounded-sm shadow-[inset_0_0_10px_rgba(0,0,0,0.5)]`}
+                        >
                           {exp.period}
                         </span>
-                        
-                        {/* Posisi & Perusahaan */}
+
+                        {/* Posisi & Perusahaan - Teks abu-abu ke putih */}
                         <div className="flex flex-col">
-                          <h4 className="text-sm font-bold text-[var(--color-gray)]/90 tracking-wide">
+                          <h4 className="text-sm font-bold text-[var(--color-white)]/90 tracking-wide">
                             {exp.role}
                           </h4>
                           <span className="text-xs text-[var(--color-gray)]/40 italic mt-0.5">
@@ -206,22 +236,27 @@ export const OProjectsSection: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* Tombol Kontrol Kanan */}
+                      {/* Tombol Kontrol Kanan - Aksen Primary/Dim gabungan */}
                       <div className="flex items-center gap-2 self-end md:self-auto text-xs tracking-wider font-mono">
-                        {/* File Attachment jika tersedia */}
                         {exp.certImg && (
-                          <button 
-                            onClick={() => setSelectedCert(exp.certImg as string)}
-                            className="flex items-center gap-1.5 border border-yellow-500/30 text-yellow-500/70 px-3 py-1.5 rounded-sm hover:bg-yellow-500/10 hover:text-yellow-400 transition-all uppercase"
+                          <button
+                            onClick={() =>
+                              setSelectedCert(exp.certImg as string)
+                            }
+                            className="flex items-center gap-1.5 border border-[var(--color-dim)]/30 text-[var(--color-white)]/60 px-3 py-1.5 rounded-sm hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] transition-all uppercase"
                           >
                             <PhotoIcon className="w-4 h-4" /> [ATTACHMENT]
                           </button>
                         )}
-                        
-                        {/* Toggle Deskripsi */}
-                        <button 
+
+                        {/* Toggle Deskripsi - Lebih terang saat aktif */}
+                        <button
                           onClick={() => toggleLog(idx)}
-                          className={`flex items-center gap-1.5 border ${borderDim} ${textColor} px-3 py-1.5 rounded-sm bg-black/30 hover:brightness-110 active:scale-95 transition-all font-bold`}
+                          className={`flex items-center gap-1.5 border transition-all font-bold px-3 py-1.5 rounded-sm active:scale-95 ${
+                            isExpanded
+                              ? `border-[var(--color-primary)]/50 ${textActive} ${bgActive}`
+                              : `border-[var(--color-dim)]/30 text-[var(--color-white)]/70 bg-black/30 hover:border-[var(--color-primary)]/50 hover:${textActive}`
+                          }`}
                         >
                           {isExpanded ? (
                             <>
@@ -234,10 +269,9 @@ export const OProjectsSection: React.FC = () => {
                           )}
                         </button>
                       </div>
-
                     </div>
 
-                    {/* Expandable Box - Ukuran teks nyaman dibaca */}
+                    {/* Expandable Box - Nuansa gelap agar teks nyaman dibaca */}
                     {isExpanded && (
                       <div className="px-5 pb-5 pt-3 border-t border-[var(--color-dim)]/10 bg-black/30 animate-expand">
                         <div className="border-l-2 border-[var(--color-dim)]/30 pl-4 py-1">
@@ -264,47 +298,48 @@ export const OProjectsSection: React.FC = () => {
         </div>
       </section>
 
-      {/* Modal Sertifikat (Tanpa Glitch) */}
+      {/* Modal Sertifikat (Tanpa Glitch, Warna disesuaikan Theme) */}
       {selectedCert && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-backdrop-fade"
           onClick={() => setSelectedCert(null)}
         >
-          <div 
-            className="relative p-2 border-2 border-yellow-500/50 bg-black max-w-4xl w-full animate-crt-on shadow-[0_0_40px_rgba(234,179,8,0.15)]"
+          <div
+            className="relative p-2 border-2 rounded-sm border-[var(--color-primary)]/40 bg-[var(--color-bg)] max-w-4xl w-full animate-crt-on shadow-[0_0_50px_rgba(var(--color-primary-rgb),0.15)]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header Modal */}
-            <div className="flex items-center justify-between border-b border-yellow-500/30 pb-2 mb-4 text-yellow-500 text-xs font-mono">
+            <div className="flex items-center justify-between border-b border-[var(--color-dim)]/20 pb-2 mb-4 text-[var(--color-primary)] text-xs font-mono">
               <span className="animate-pulse flex items-center gap-2">
-                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-[var(--color-primary)] rounded-full"></div>
                 DECRYPTING_SECURE_FILE... [OK]
               </span>
-              <button 
+              <button
                 onClick={() => setSelectedCert(null)}
-                className="hover:text-red-500 hover:bg-red-500/10 p-1 transition-all"
+                className="text-[var(--color-gray)]/50 hover:text-red-500 hover:bg-red-500/10 p-1 transition-all rounded"
               >
                 <XMarkIcon className="w-5 h-5" />
               </button>
             </div>
 
             {/* Container Image */}
-            <div className="relative w-full h-auto overflow-hidden bg-[#0a0a0a] border border-yellow-500/20 flex items-center justify-center min-h-[300px]">
+            <div className="relative w-full h-auto overflow-hidden bg-black/50 border border-[var(--color-dim)]/10 rounded-sm flex items-center justify-center min-h-[300px]">
               <div className="scanline"></div>
-              <img 
-                src={selectedCert} 
-                alt="Certificate" 
+              <img
+                src={selectedCert}
+                alt="Certificate"
                 className="w-full h-auto max-h-[75vh] object-contain opacity-95 mix-blend-lighten"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://placehold.co/800x600/0a0a0a/eab308?font=monospace&text=[_DATA_CORRUPTED_]';
+                  (e.target as HTMLImageElement).src =
+                    "https://placehold.co/800x600/0a0a0a/444444?font=monospace&text=[_DATA_CORRUPTED_]";
                 }}
               />
             </div>
-            
+
             {/* Footer Modal */}
-            <div className="mt-3 text-[0.65rem] text-yellow-500/50 flex justify-between font-mono tracking-widest">
-              <span>SECURITY_CLEARANCE: GRANTED</span>
-              <span>NODE: CHESS_SECTOR</span>
+            <div className="mt-3 text-[0.65rem] text-[var(--color-gray)]/40 flex justify-between font-mono tracking-widest uppercase">
+              <span>Security_Clearance: Granted</span>
+              <span>Node: Sector_Verified</span>
             </div>
           </div>
         </div>
