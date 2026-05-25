@@ -23,7 +23,7 @@ export const OCRTMonitor: React.FC<OCRTMonitorProps> = ({ children }) => {
         className="border-2 rounded-xl overflow-hidden backdrop-blur-md transition-all duration-300 hover:border-[var(--color-primary)]/40 relative group flex flex-col"
       >
         
-        {/* ================= SCREEN EFFECTS LAYER ================= */}
+        {/*SCREEN EFFECTS LAYER*/}
         {/* Garis Scanlines Super Halus (Diperhalus opasitasnya agar mata tidak lelah) */}
         <div className="absolute inset-0 z-20 pointer-events-none opacity-40 bg-[repeating-linear-gradient(0deg,transparent_0px,transparent_3px,rgba(0,0,0,0.08)_3px,rgba(0,0,0,0.08)_4px)]" />
         
@@ -37,7 +37,7 @@ export const OCRTMonitor: React.FC<OCRTMonitorProps> = ({ children }) => {
         <div className="absolute inset-0 z-20 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_75%,rgba(0,0,0,0.3)_100%)]" />
 
 
-        {/* ================= WINDOW HEADER BAR ================= */}
+        {/*WINDOW HEADER BAR*/}
         {/* Menggunakan gaya window top bar ala OS/Mac tetapi dengan nuansa retro */}
         <div className="bg-[var(--color-dim)]/15 px-4 py-3 flex justify-between items-center border-b border-[var(--color-dim)]/20 relative z-30 select-none">
           {/* Fake Window Controls (Bulat Retro) */}
@@ -60,7 +60,7 @@ export const OCRTMonitor: React.FC<OCRTMonitorProps> = ({ children }) => {
         </div>
 
 
-        {/* ================= CONTENT AREA ================= */}
+        {/*CONTENT AREA*/}
         {/* Memberikan ruang padding yang jauh lebih lega dan fleksibel tanpa max-w rigid */}
         <div className="relative z-30 flex-1 p-1 sm:p-3 md:p-5">
           
@@ -77,8 +77,9 @@ export const OCRTMonitor: React.FC<OCRTMonitorProps> = ({ children }) => {
         </div>
 
 
-        {/* ================= WINDOW FOOTER BAR ================= */}
-        {/* Menambahkan bar status bawah yang kental dengan nuansa retro cyberpunk */}
+        {/*STATUS BAR*/}
+         {/* Menambahkan status bar di bagian bawah untuk memberikan informasi tambahan seperti koneksi, protokol, dll */}
+         {/* Didesain dengan gaya terminal retro yang menyatu dengan keseluruhan tema */}
         <div className="border-t border-[var(--color-dim)]/10 px-4 py-2 bg-[var(--color-dim)]/5 flex justify-between items-center text-[0.7rem] text-[var(--color-gray)]/40 relative z-30 font-mono select-none">
           <div className="flex items-center gap-4">
             <span>STATUS: <span className="text-[var(--color-accent)] font-bold opacity-80 animate-pulse">ONLINE</span></span>

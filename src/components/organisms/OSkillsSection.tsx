@@ -16,8 +16,8 @@ export const OSkillsSection: React.FC = () => {
         { name: "Next", ext: "js", tag: "SSR / SSG" },
         { name: "TypeScript", ext: "ts", tag: "type safety" },
         { name: "Tailwind", ext: "css", tag: "utility-first" },
-        { name: "Vue", ext: "js", tag: "alternative" },
-        { name: "Three", ext: "js", tag: "3D / WebGL" },
+        { name: "Shadcn", ext: "js", tag: "component library" },
+        { name: "Bootstrap", ext: "css", tag: "CSS framework" },
       ],
     },
     {
@@ -28,7 +28,7 @@ export const OSkillsSection: React.FC = () => {
         { name: "Go", ext: "go", tag: "concurrency" },
         { name: "schema", ext: "sql", tag: "PostgreSQL" },
         { name: "redis", ext: "yml", tag: "cache / pub-sub" },
-        { name: "kafka", ext: "yml", tag: "event stream" },
+        { name: "Express", ext: "js", tag: "web framework" },
       ],
     },
     {
