@@ -82,7 +82,7 @@ export const ONavBar: React.FC<ONavBarProps> = ({ active, onNav, themeId, onThem
         <div className="flex items-center justify-between w-full">
           {/* Sisi Kiri: Identitas Logo & Status */}
           <div className="flex items-center gap-4">
-            <AGlow size="1.15rem"><span className="tracking-widest">PORTFOLIO.EXE</span></AGlow>
+            <AGlow size="1.15rem"><span className="tracking-widest">Sultan-Faiz.exe</span></AGlow>
             <AStatus />
           </div>
           

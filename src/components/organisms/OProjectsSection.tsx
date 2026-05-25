@@ -73,6 +73,7 @@ export const OProjectsSection: React.FC = () => {
       summary:
         "Coordinated national-level competition operations, ensuring smooth execution of schedules, participant management, and technical workflows.",
       type: "work",
+      certImg: "/src/assets/images/fostifest-cert.png"
     },
     {
       period: "2019 – 2024",

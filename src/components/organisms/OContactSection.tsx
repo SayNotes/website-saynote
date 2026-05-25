@@ -52,14 +52,14 @@ export const OContactSection: React.FC = () => {
   const CMDS: Record<CmdKeys, (args: string[]) => CmdLine[] | null> = {
     help: () => [
       { text: "Available commands:", icon: InformationCircleIcon }, 
-      { text: "  run      — Execute application (e.g., run projects.exe)", icon: ChevronRightIcon },
-      { text: "  explorer — Navigate sectors (e.g., explorer /skills)", icon: ChevronRightIcon },
-      { text: "  cat      — Read file content (e.g., cat about.txt)", icon: ChevronRightIcon },
-      { text: "  ls       — List available files", icon: ChevronRightIcon }, 
-      { text: "  email    — View email address", icon: ChevronRightIcon }, 
-      { text: "  github   — GitHub profile link", icon: ChevronRightIcon }, 
-      { text: "  linkedin — LinkedIn profile link", icon: ChevronRightIcon }, 
-      { text: "  clear    — Clear terminal screen", icon: ChevronRightIcon }
+      { text: "run      : Execute application (e.g., run projects.exe)", icon: ChevronRightIcon },
+      { text: "explorer : Navigate sectors (e.g., explorer /skills)", icon: ChevronRightIcon },
+      { text: "cat      : Read file content (e.g., cat about.txt)", icon: ChevronRightIcon },
+      { text: "ls       : List available files", icon: ChevronRightIcon }, 
+      { text: "email    : View email address", icon: ChevronRightIcon }, 
+      { text: "github   : GitHub profile link", icon: ChevronRightIcon }, 
+      { text: "linkedin : LinkedIn profile link", icon: ChevronRightIcon }, 
+      { text: "clear    : Clear terminal screen", icon: ChevronRightIcon }
     ],
     email: () => [{ text: "hello@retro-dev.io", icon: EnvelopeIcon, iconColor: t.primary }],
     github: () => [{ text: "github.com/retro-developer", icon: CodeBracketIcon, iconColor: t.white }],
