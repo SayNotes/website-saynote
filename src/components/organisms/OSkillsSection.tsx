@@ -26,7 +26,7 @@ export const OSkillsSection: React.FC = () => {
         { name: "Node", ext: "js", tag: "event loop" },
         { name: "FastAPI", ext: "py", tag: "async REST" },
         { name: "Go", ext: "go", tag: "concurrency" },
-        { name: "schema", ext: "sql", tag: "PostgreSQL" },
+        { name: "MariaDB", ext: "sql", tag: "SQL database" },
         { name: "redis", ext: "yml", tag: "cache / pub-sub" },
         { name: "Express", ext: "js", tag: "web framework" },
       ],

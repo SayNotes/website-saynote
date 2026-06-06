@@ -23,7 +23,9 @@ export const OHeroSection: React.FC<OHeroSectionProps> = ({ onNav }) => {
 
   // Masukkan Link Embed Spotify kamu di sini. 
   // Cara dapatnya: Buka Spotify > Share > Embed Playlist > Copy url src-nya.
-  const SPOTIFY_EMBED_URL = "";
+  const SPOTIFY_EMBED_URL = "https://open.spotify.com/embed/album/0vmgk9gXBb172YgnZP40hm?utm_source=generator";
+  const SPOTIFY_EMBED_URL_2 = "https://open.spotify.com/embed/album/43WJawNLPtx0rCrx2zCwKq?utm_source=generator";
+  const SPOTIFY_EMBED_URL_4 = "https://open.spotify.com/embed/track/3DKdWFSwynfGc9APrIwEm0?utm_source=generator";
 
   useEffect(() => {
     const w = cRef.current?.offsetWidth || 800;
@@ -45,6 +47,21 @@ export const OHeroSection: React.FC<OHeroSectionProps> = ({ onNav }) => {
         @keyframes blink-dot {
           0%, 100% { opacity: 1; }
           50%      { opacity: 0; }
+        }
+        .spotify-embed-container {
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 0 20px var(--color-primary)33;
+          transition: box-shadow 0.3s ease;
+        }
+        .spotify-embed-container:hover {
+          box-shadow: 0 0 30px var(--color-primary)66;
+        }
+        .spotify-embed-container iframe {
+          border: 1px solid var(--color-primary)22;
+          border-radius: 12px;
+          width: 100%;
+          max-width: 400px;
         }
       `}</style>
 
@@ -80,7 +97,60 @@ export const OHeroSection: React.FC<OHeroSectionProps> = ({ onNav }) => {
             </div>
           </div>
 
+          {/* ── RIGHT COLUMN ── */}
+          <div className="lg:col-span-5 flex justify-center items-center">
+          </div>
         </div>
+
+        {/* Spotify Embed - Bottom Center */}
+        {(SPOTIFY_EMBED_URL || SPOTIFY_EMBED_URL_2 || SPOTIFY_EMBED_URL_4) && (
+          <div className="flex justify-center gap-6 mt-16 flex-nowrap px-4 overflow-x-auto">
+            {SPOTIFY_EMBED_URL && (
+              <div className="spotify-embed-container min-w-[280px]">
+                <iframe
+                  data-testid="embed-iframe"
+                  src={SPOTIFY_EMBED_URL}
+                  width="100%"
+                  height="110"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            {SPOTIFY_EMBED_URL_2 && (
+              <div className="spotify-embed-container min-w-[280px]">
+                <iframe
+                  data-testid="embed-iframe"
+                  style={{ borderRadius: "12px" }}
+                  src={SPOTIFY_EMBED_URL_2}
+                  width="100%"
+                  height="110"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            {SPOTIFY_EMBED_URL_4 && (
+              <div className="spotify-embed-container min-w-[280px]">
+                <iframe
+                  data-testid="embed-iframe"
+                  style={{ borderRadius: "12px" }}
+                  src={SPOTIFY_EMBED_URL_4}
+                  width="100%"
+                  height="110"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                />
+              </div>
+            )}
+          </div>
+        )}
       </section>
     </>
   );
